@@ -2,21 +2,40 @@
 
 function getA() {
   return new Promise((resolve) => {
-    setTimeout(() => { resolve(11); }, 1000);
+    setTimeout(() => { resolve(2); }, 1000);
   });
 }
 
 function getB() {
   return new Promise((resolve) => {
-    setTimeout(() => { resolve(13); }, 1000);
+    setTimeout(() => { resolve(3); }, 1000);
   });
 }
 
 function getC() {
   return new Promise((resolve) => {
-    setTimeout(() => { resolve(17); }, 1000);
+    setTimeout(() => { resolve(4); }, 1000);
   });
 }
 
-// TODO ここに getA, getB, getC で得られる結果をかけあわせた結果 2431 を標準出力するコードを記述する
-// ただし Promise チェイン(then関数の結果に対するthen関数の呼び出し)を一度は用いて実装をすること
+
+
+// Promise Chainは使わない方法
+getA().then((a)=>{
+  getB().then((b)=>{
+    getC().then((c)=>{
+      
+      console.log( a*b*c );
+
+    });
+  });
+});
+
+
+// Promise Chainをつかう方法
+getA().then((a)=>{
+  return getB().then((b)=>{ return a*b; });
+}).then((ab)=>{
+  getC().then((c)=>{ console.log(ab*c); });
+});
+
