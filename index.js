@@ -39,3 +39,9 @@ getA().then((a)=>{
   getC().then((c)=>{ console.log(ab*c); });
 });
 
+
+// Promise.allを使う方法
+Promise.all([getA(), getB(), getC()]).then(([a,b,c])=>{
+  console.log( a*b*c );
+});
+

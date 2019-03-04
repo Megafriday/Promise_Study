@@ -45,11 +45,20 @@ getA().then((a)=>{
 });
 ```
 
+
 ```
 // Promise Chainをつかう方法
 getA().then((a)=>{
   return getB().then((b)=>{ return a*b; });
 }).then((ab)=>{
   getC().then((c)=>{ console.log(ab*c); });
+});
+```
+
+
+```
+// Promise.allを使う方法
+Promise.all([getA(), getB(), getC()]).then(([a,b,c])=>{
+  console.log( a*b*c );
 });
 ```
