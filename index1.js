@@ -45,3 +45,11 @@ Promise.all([getA(), getB(), getC()]).then(([a, b, c]) => {
 	console.log(a * b * c);
 });
 
+
+// async/await を使う方法
+getA().then(async (a) => {
+	const b = await getB();
+	const c = await getC();
+	console.log(a * b * c);
+});
+

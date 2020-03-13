@@ -7,11 +7,11 @@ function getA() {
 }
 
 // getA() の　戻り値は、Promise
-const p1 = getA();					// p1は、2をresolveに持ったPromise
+const p1 = getA();					// p1は、2をPromiseでラップ
 p1.then(a => console.log(a));		// 2
 
 // Promise.prototype.then() の 戻り値は、Promise
-const p2 = getA().then(a => a * 3);	// pは、a*3をresolveに持ったPromise
+const p2 = getA().then(a => a * 3);	// pは、a*3をPromiseでラップ
 p2.then(a => console.log(a));		// 6 (2*3)
 ```
 
@@ -78,5 +78,15 @@ getA().then((a)=>{
 // Promise.allを使う方法
 Promise.all([getA(), getB(), getC()]).then(([a,b,c])=>{
   console.log( a*b*c );
+});
+```
+
+
+```JavaScript
+// async/await を使う方法
+getA().then(async(a) => {
+  const b = await getB();
+  const c = await getC();
+  console.log(a * b * c);
 });
 ```
