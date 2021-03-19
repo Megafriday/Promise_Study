@@ -21,9 +21,9 @@ function getC() {
 
 
 // Promise Chainは使わない方法
-getA().then((a) => {
-	getB().then((b) => {
-		getC().then((c) => {
+getA().then(a => {
+	getB().then(b => {
+		getC().then(c => {
 
 			console.log(a * b * c);
 
@@ -33,6 +33,7 @@ getA().then((a) => {
 
 
 // Promise Chainをつかう方法
+// Promise Chain とは、Promiseを戻り値にする。
 getA().then((a) => {
 	return getB().then((b) => { return a * b; });
 }).then((ab) => {
@@ -47,9 +48,10 @@ Promise.all([getA(), getB(), getC()]).then(([a, b, c]) => {
 
 
 // async/await を使う方法
-getA().then(async (a) => {
+(async () => {
+	const a = await getA();
 	const b = await getB();
 	const c = await getC();
 	console.log(a * b * c);
-});
+})();
 
